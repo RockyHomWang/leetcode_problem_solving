@@ -53,7 +53,7 @@ package problem_solving;
  * 0 <= val <= 100
  */
 
-class Solution2 {
+class Solution {
     public int removeElement(int[] nums, int val) {
         /*
         //方法一：暴力解法，双层for循环，时间复杂度（O(n^2)）
@@ -99,10 +99,12 @@ class Solution2 {
         return leftPointer;
     }
 
+    /*
     public static void main(String[] args) {
         Solution2 s = new Solution2();
         int[] arr = new int[]{2, 2, 2, 2, 2, 2, 2, 2};
         int ans = s.removeElement(arr, 2);
         System.out.println(ans);
     }
+    */
 }
