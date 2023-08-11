@@ -82,14 +82,27 @@ class Solution2 {
         return slowPointer; //最终，慢指的值就是数组长度（因为最后slowPointer做了一个++操作）
         */
 
-        //方法三：相向双指针
+        //方法三：相向双指针 - 整体思路：左侧指针需要找到目标值元素，右侧指针负责找到不是目标值元素，然后将右侧指针的元素值赋值给左侧元素
+        int leftPointer = 0;
+        int rightPointer = nums.length - 1;
 
+        while (leftPointer <= rightPointer) { //① 这里如果将 <= 替换成 < 会有什么影响吗？ ② 为什么这里已经进行条件判断，后续子循环和条件依然需要二次判断呢？
+
+            //左侧指针负责找出目标值元素
+            while (leftPointer <= rightPointer && val != nums[leftPointer]) ++leftPointer;
+
+            //右侧指针负责找出非目标值元素
+            while (leftPointer <= rightPointer && val == nums[rightPointer]) --rightPointer;
+
+            if (leftPointer <= rightPointer) nums[leftPointer++] = nums[rightPointer--];
+        }
+        return leftPointer;
     }
 
     public static void main(String[] args) {
         Solution2 s = new Solution2();
-        int[] arr = new int[] {1,2,2,2,5,6,7,8,9};
-        int ans = s.removeElement(arr, 3);
+        int[] arr = new int[]{2, 2, 2, 2, 2, 2, 2, 2};
+        int ans = s.removeElement(arr, 2);
         System.out.println(ans);
     }
 }
